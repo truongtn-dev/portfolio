@@ -7,16 +7,16 @@ export const CursorSpotlight: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const mouseX = useMotionValue(-200);
-  const mouseY = useMotionValue(-200);
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
 
-  // Smooth physics spring cursor follower
-  const springConfig = { damping: 28, stiffness: 220, mass: 0.6 };
+  // High-precision smooth physics spring follower
+  const springConfig = { damping: 30, stiffness: 350, mass: 0.4 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    // Only enable on desktop with coarse pointer checking
+    // Disable on touch devices
     if (window.matchMedia("(pointer: coarse)").matches) {
       return;
     }
@@ -61,8 +61,8 @@ export const CursorSpotlight: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-40 overflow-hidden">
-      {/* Large Ambient Light Halo */}
+    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+      {/* 1. Ultra-subtle Ambient Light Aura (Small, soft & faint) */}
       <motion.div
         style={{
           x: cursorX,
@@ -71,14 +71,14 @@ export const CursorSpotlight: React.FC = () => {
           translateY: "-50%"
         }}
         animate={{
-          scale: isHovered ? 1.4 : 1,
-          opacity: isHovered ? 0.25 : 0.15
+          scale: isHovered ? 1.3 : 1,
+          opacity: isHovered ? 0.12 : 0.06
         }}
         transition={{ duration: 0.2 }}
-        className="absolute w-[450px] h-[450px] rounded-full bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 blur-3xl pointer-events-none"
+        className="absolute w-32 h-32 rounded-full bg-sky-500 blur-xl pointer-events-none"
       />
 
-      {/* Sharp Subtle Cursor Core Indicator */}
+      {/* 2. Sleek Translucent Cursor Follower Ring */}
       <motion.div
         style={{
           x: cursorX,
@@ -87,11 +87,13 @@ export const CursorSpotlight: React.FC = () => {
           translateY: "-50%"
         }}
         animate={{
-          scale: isHovered ? 1.6 : 1,
-          opacity: isHovered ? 0.8 : 0.4
+          width: isHovered ? 40 : 20,
+          height: isHovered ? 40 : 20,
+          borderColor: isHovered ? "rgba(2, 132, 199, 0.7)" : "rgba(148, 163, 184, 0.4)",
+          backgroundColor: isHovered ? "rgba(2, 132, 199, 0.08)" : "rgba(255, 255, 255, 0.2)"
         }}
-        transition={{ duration: 0.15 }}
-        className="absolute w-6 h-6 rounded-full border border-sky-400/60 bg-sky-400/20 backdrop-blur-xs pointer-events-none hidden sm:block"
+        transition={{ type: "spring", stiffness: 400, damping: 28 }}
+        className="absolute rounded-full border backdrop-blur-[1px] pointer-events-none hidden sm:block shadow-2xs"
       />
     </div>
   );
