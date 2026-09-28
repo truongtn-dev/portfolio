@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, Variants } from "framer-motion";
 import {
@@ -11,15 +11,18 @@ import {
   Sparkles,
   Globe,
   ShieldCheck,
-  ChevronDown
+  User,
+  Box
 } from "lucide-react";
 import { GithubIcon, FacebookIcon } from "@/components/ui/Icons";
 import { Button } from "@/components/ui/Button";
 import { MarqueeTicker } from "@/components/ui/MarqueeTicker";
+import { SplineScene } from "@/components/ui/SplineScene";
 
 export const Hero: React.FC = () => {
   const { data, language } = useLanguage();
   const avatarUrl = "/images/nguyenthanhtruong.jpg";
+  const [activeTab, setActiveTab] = useState<"photo" | "spline">("photo");
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -157,7 +160,7 @@ export const Hero: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* CTA Buttons with Magnetic Spring Hover */}
+            {/* CTA Buttons */}
             <motion.div variants={itemVariants} className="flex flex-wrap gap-3 sm:gap-4 pt-1">
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <Button
@@ -168,7 +171,6 @@ export const Hero: React.FC = () => {
                   iconPosition="right"
                   className="relative overflow-hidden group bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:via-blue-500 hover:to-indigo-500 text-white font-bold px-7 py-3.5 rounded-full shadow-[0_6px_24px_rgba(2,132,199,0.38)] border border-sky-400/30"
                 >
-                  {/* Shiny Reflection Beam Sweep */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
                   <span>{data.hero.primaryCta}</span>
                 </Button>
@@ -229,48 +231,86 @@ export const Hero: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Prominent Portrait Frame + Floating Badges */}
+          {/* Right Column: Dynamic View Switcher (Portrait vs Spline 3D Interactive Canvas) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="lg:col-span-5 relative flex justify-center"
+            className="lg:col-span-5 relative flex flex-col items-center"
           >
+            {/* View Mode Switcher Pill */}
+            <div className="flex items-center gap-1.5 p-1.5 mb-4 bg-white/90 backdrop-blur-xl border border-slate-200/90 rounded-full shadow-sm z-30">
+              <button
+                onClick={() => setActiveTab("photo")}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
+                  activeTab === "photo"
+                    ? "bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>{language === "vi" ? "Chân dung" : "Portrait"}</span>
+              </button>
+              <button
+                onClick={() => setActiveTab("spline")}
+                className={`px-3.5 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
+                  activeTab === "spline"
+                    ? "bg-gradient-to-r from-sky-600 to-blue-600 text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <Box className="w-3.5 h-3.5" />
+                <span>{language === "vi" ? "Không gian 3D Spline" : "3D Spline Scene"}</span>
+              </button>
+            </div>
+
             <div className="relative w-full max-w-[360px] sm:max-w-[410px]">
 
-              {/* Animated Glow Aura behind Portrait */}
+              {/* Animated Glow Aura behind Container */}
               <div className="absolute -inset-4 rounded-[42px] bg-gradient-to-tr from-sky-500/35 via-blue-600/25 to-indigo-500/35 blur-2xl opacity-80 animate-pulse pointer-events-none" />
 
-              {/* Portrait Frame Container with Gradient Border */}
-              <motion.div
-                whileHover={{ rotateY: 3, rotateX: -3 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative w-full aspect-[3/4] rounded-[36px] p-2 bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 shadow-[0_22px_55px_rgba(2,132,199,0.28)] group/avatar"
-              >
-                <div className="relative w-full h-full rounded-[28px] overflow-hidden bg-slate-100">
-                  <img
-                    src={avatarUrl}
-                    alt="Nguyễn Thành Trương"
-                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/avatar:scale-106"
-                  />
-
-                  {/* Shine reflection sweep */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/25 to-transparent -translate-x-full group-hover/avatar:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
-
-                  {/* Gradient Overlay at bottom */}
-                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/80 via-slate-900/40 to-transparent pointer-events-none" />
-
-                  {/* Name overlay on photo */}
-                  <div className="absolute inset-x-0 bottom-0 p-5 text-white pointer-events-none">
-                    <span className="text-sm font-bold tracking-tight block drop-shadow-md">
-                      NGUYỄN THÀNH TRƯƠNG
-                    </span>
-                    <span className="text-[11px] text-sky-200 tracking-wider uppercase font-semibold block drop-shadow-md">
-                      Software Engineer & Founder
-                    </span>
+              {activeTab === "photo" ? (
+                /* Portrait Frame Container */
+                <motion.div
+                  key="photo-container"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ rotateY: 4, rotateX: -4 }}
+                  className="relative w-full aspect-[3/4] rounded-[36px] p-2 bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 shadow-[0_22px_55px_rgba(2,132,199,0.28)] group/avatar"
+                >
+                  <div className="relative w-full h-full rounded-[28px] overflow-hidden bg-slate-100">
+                    <img
+                      src={avatarUrl}
+                      alt="Nguyễn Thành Trương"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/avatar:scale-106"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/25 to-transparent -translate-x-full group-hover/avatar:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/80 via-slate-900/40 to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 p-5 text-white pointer-events-none">
+                      <span className="text-sm font-bold tracking-tight block drop-shadow-md">
+                        NGUYỄN THÀNH TRƯƠNG
+                      </span>
+                      <span className="text-[11px] text-sky-200 tracking-wider uppercase font-semibold block drop-shadow-md">
+                        Software Engineer & Founder
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              ) : (
+                /* Spline 3D Interactive Canvas Scene */
+                <motion.div
+                  key="spline-container"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative w-full aspect-[3/4] rounded-[36px] p-2 bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 shadow-[0_22px_55px_rgba(2,132,199,0.28)]"
+                >
+                  <div className="w-full h-full rounded-[28px] overflow-hidden bg-slate-950">
+                    <SplineScene className="w-full h-full" />
+                  </div>
+                </motion.div>
+              )}
 
               {/* Floating Badge 1: Top Right */}
               <motion.div
@@ -358,7 +398,7 @@ export const Hero: React.FC = () => {
 
         </div>
 
-        {/* Landing.love Inspired Infinite Marquee Ticker */}
+        {/* Landing.love Infinite Marquee Ticker */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
