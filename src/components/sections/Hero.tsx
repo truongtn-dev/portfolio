@@ -15,31 +15,11 @@ import {
 } from "lucide-react";
 import { GithubIcon, FacebookIcon } from "@/components/ui/Icons";
 import { Button } from "@/components/ui/Button";
-import { CloudinaryUploadModal } from "@/components/ui/CloudinaryUploadModal";
 import { MarqueeTicker } from "@/components/ui/MarqueeTicker";
 
 export const Hero: React.FC = () => {
   const { data, language } = useLanguage();
-  const [avatarUrl, setAvatarUrl] = useState<string>("/images/nguyenthanhtruong.jpg");
-  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("custom_avatar_url");
-      if (saved) setAvatarUrl(saved);
-    } catch {
-      // ignore
-    }
-  }, []);
-
-  const handleAvatarSuccess = (url: string) => {
-    setAvatarUrl(url);
-    try {
-      localStorage.setItem("custom_avatar_url", url);
-    } catch {
-      // ignore
-    }
-  };
+  const avatarUrl = "/images/nguyenthanhtruong.jpg";
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -388,15 +368,6 @@ export const Hero: React.FC = () => {
           <MarqueeTicker speed={35} />
         </motion.div>
       </div>
-
-      {/* Cloudinary Image Upload Modal */}
-      <CloudinaryUploadModal
-        isOpen={isUploadModalOpen}
-        onClose={() => setIsUploadModalOpen(false)}
-        onSuccess={handleAvatarSuccess}
-        title={language === "vi" ? "Cập nhật ảnh đại diện (Cloudinary)" : "Update Profile Photo (Cloudinary)"}
-        folder="portfolio/avatar"
-      />
     </section>
   );
 };

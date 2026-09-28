@@ -17,7 +17,7 @@ const DEFAULT_ITEMS = [
   "AI Engineering",
   "Healthcare Systems",
   "Tailwind CSS v4",
-  "Cloudinary",
+  "Docker & Cloud CI/CD",
   "Growth & SEO",
   "Node.js",
   "Python",
