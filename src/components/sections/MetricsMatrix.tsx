@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, useInView, animate } from "framer-motion";
 import {
   Users,
   Award,
@@ -13,6 +13,50 @@ import {
   Home
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
+
+// Animated counter component for numeric values
+interface AnimatedCounterProps {
+  valueString: string;
+}
+
+const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ valueString }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    if (!isInView || !ref.current) return;
+
+    // Extract raw number and suffix/prefix (e.g., "10,000+" -> number: 10000, suffix: "+", formatted: true)
+    const rawNumberMatch = valueString.match(/\d[\d,]*/);
+    if (!rawNumberMatch) {
+      if (ref.current) ref.current.textContent = valueString;
+      return;
+    }
+
+    const numberStr = rawNumberMatch[0].replace(/,/g, "");
+    const targetVal = parseInt(numberStr, 10);
+    const prefix = valueString.substring(0, rawNumberMatch.index || 0);
+    const suffix = valueString.substring((rawNumberMatch.index || 0) + rawNumberMatch[0].length);
+    const hasCommas = rawNumberMatch[0].includes(",");
+
+    const controls = animate(0, targetVal, {
+      duration: 1.8,
+      ease: "easeOut",
+      onUpdate(value) {
+        if (ref.current) {
+          const currentFormatted = hasCommas
+            ? Math.floor(value).toLocaleString("en-US")
+            : Math.floor(value).toString();
+          ref.current.textContent = `${prefix}${currentFormatted}${suffix}`;
+        }
+      }
+    });
+
+    return () => controls.stop();
+  }, [isInView, valueString]);
+
+  return <span ref={ref}>{valueString}</span>;
+};
 
 export const MetricsMatrix: React.FC = () => {
   const { data } = useLanguage();
@@ -66,25 +110,15 @@ export const MetricsMatrix: React.FC = () => {
         {/* 6-Card Matrix Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {data.metrics.items.map((item, index) => {
-            const accentColors = [
-              "from-sky-500 to-blue-600",
-              "from-amber-500 to-orange-500",
-              "from-indigo-500 to-violet-600",
-              "from-emerald-500 to-teal-600",
-              "from-blue-600 to-cyan-500",
-              "from-emerald-600 to-green-500"
-            ];
-            const currentAccent = accentColors[index % accentColors.length];
-
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.03 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
               >
-                <GlassCard className="p-6 h-full flex flex-col justify-between group border-slate-200/80 hover:border-sky-300/80">
+                <GlassCard className="p-6 md:p-7 h-full flex flex-col justify-between group border-slate-200/80 hover:border-sky-300/90">
                   <div>
                     <div className="flex items-center justify-between mb-4">
                       <div className="p-2.5 rounded-xl bg-slate-100/90 border border-slate-200/60 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
@@ -97,9 +131,9 @@ export const MetricsMatrix: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Big Number */}
+                    {/* Big Animated Number */}
                     <div className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-1 bg-gradient-to-r from-slate-900 via-sky-900 to-sky-700 bg-clip-text text-transparent group-hover:from-sky-600 group-hover:to-blue-700 transition-all duration-300">
-                      {item.number}
+                      <AnimatedCounter valueString={item.number} />
                     </div>
 
                     {/* Label */}

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   ArrowRight,
   Mail,
@@ -10,16 +10,16 @@ import {
   Trophy,
   Sparkles,
   Globe,
-  ShieldCheck
+  ShieldCheck,
+  ChevronDown
 } from "lucide-react";
-import { GithubIcon, FacebookIcon, ZaloIcon } from "@/components/ui/Icons";
+import { GithubIcon, FacebookIcon } from "@/components/ui/Icons";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
 import { CloudinaryUploadModal } from "@/components/ui/CloudinaryUploadModal";
+import { MarqueeTicker } from "@/components/ui/MarqueeTicker";
 
 export const Hero: React.FC = () => {
   const { data, language } = useLanguage();
-  // Default to real photo nguyenthanhtruong.jpg
   const [avatarUrl, setAvatarUrl] = useState<string>("/images/nguyenthanhtruong.jpg");
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
 
@@ -67,8 +67,32 @@ export const Hero: React.FC = () => {
     }
   };
 
+  // Kinetic Typography Animation Variants
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <section id="about" className="relative pt-28 md:pt-36 pb-16 md:pb-24 overflow-hidden">
+    <section id="about" className="relative pt-28 md:pt-36 pb-14 md:pb-20 overflow-hidden">
       {/* Background radial gradient flares */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] pointer-events-none -z-10">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl" />
@@ -79,30 +103,31 @@ export const Hero: React.FC = () => {
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
 
-          {/* Left Column: Name, Multi-disciplinary Headline & Bio with Keyword Highlights */}
+          {/* Left Column: Kinetic Typography & Bio */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
             className="lg:col-span-7 space-y-6"
           >
-            {/* Top Portfolio Kicker */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs sm:text-sm font-black tracking-[0.2em] text-sky-600 uppercase bg-sky-50/80 px-3.5 py-1 rounded-full border border-sky-200/70 shadow-2xs">
+            {/* Top Kicker Pill */}
+            <motion.div variants={itemVariants} className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-black tracking-[0.2em] text-sky-700 uppercase bg-sky-50/90 px-4 py-1.5 rounded-full border border-sky-200/80 shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-sky-500 animate-ping" />
                 {data.hero.kicker || "PORTFOLIO 2026"}
               </span>
-            </div>
+            </motion.div>
 
-            {/* Prominent Display Name */}
-            <div className="space-y-2">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-black text-slate-900 tracking-[-0.04em] leading-[1.05]">
+            {/* Prominent Display Name with Kinetic Stagger */}
+            <motion.div variants={itemVariants} className="space-y-2">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-black text-slate-900 tracking-[-0.04em] leading-[1.04]">
                 <span>{data.hero.firstName || (language === "vi" ? "Nguyễn Thành" : "Thanh")} </span>
                 <span className="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   {data.hero.lastName || (language === "vi" ? "Trương" : "Truong")}
                 </span>
               </h1>
 
-              {/* Multi-disciplinary Skill Capsules (3 Core Pillars) */}
+              {/* Multi-disciplinary Skill Pills with Hover Motion */}
               <div className="flex flex-wrap items-center gap-2.5 pt-2">
                 {(data.hero.skillPills || (language === "vi" ? [
                   { label: "Kỹ thuật Phần mềm & AI" },
@@ -113,19 +138,21 @@ export const Hero: React.FC = () => {
                   { label: "Healthcare Operations & Management" },
                   { label: "Growth Optimization & SEO" }
                 ])).map((skill, idx) => (
-                  <span
+                  <motion.span
                     key={idx}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/95 hover:bg-sky-50/90 text-slate-850 hover:text-sky-700 text-xs sm:text-[13.5px] font-bold border border-slate-200/90 hover:border-sky-300 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-xs hover:-translate-y-0.5 transition-all duration-200 select-none cursor-default"
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/95 hover:bg-sky-50/90 text-slate-850 hover:text-sky-700 text-xs sm:text-[13.5px] font-bold border border-slate-200/90 hover:border-sky-300 shadow-[0_2px_10px_rgba(0,0,0,0.03)] hover:shadow-xs transition-all duration-200 select-none cursor-default"
                   >
                     <span className="w-2 h-2 rounded-full bg-gradient-to-r from-sky-500 to-blue-600 shrink-0 shadow-2xs" />
                     <span>{skill.label}</span>
-                  </span>
+                  </motion.span>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-            {/* Rich Bio with Highlighted Keywords for HR */}
-            <div className="space-y-3">
+            {/* Rich Bio */}
+            <motion.div variants={itemVariants} className="space-y-3">
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
                 {language === "vi" ? (
                   <>
@@ -137,49 +164,60 @@ export const Hero: React.FC = () => {
                   </>
                 )}
               </p>
-            </div>
+            </motion.div>
 
             {/* Work Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50/90 border border-emerald-200/80 text-xs font-semibold text-emerald-800 shadow-2xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span>{data.hero.workStatus}</span>
-            </div>
+            <motion.div variants={itemVariants}>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50/90 border border-emerald-200/80 text-xs font-semibold text-emerald-800 shadow-2xs">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>{data.hero.workStatus}</span>
+              </div>
+            </motion.div>
 
-            {/* CTA Buttons (Strictly NO black buttons) */}
-            <div className="flex flex-wrap gap-3 sm:gap-4 pt-1">
-              <Button
-                variant="primary"
-                size="md"
-                onClick={() => scrollToSection("projects")}
-                icon={<ArrowRight className="w-4 h-4" />}
-                iconPosition="right"
-                className="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:via-blue-500 hover:to-indigo-500 text-white font-bold px-6 py-3 rounded-full shadow-[0_4px_16px_rgba(2,132,199,0.35)] hover:shadow-[0_6px_22px_rgba(2,132,199,0.45)] border border-sky-400/25"
-              >
-                {data.hero.primaryCta}
-              </Button>
+            {/* CTA Buttons with Magnetic Spring Hover */}
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-3 sm:gap-4 pt-1">
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={() => scrollToSection("projects")}
+                  icon={<ArrowRight className="w-4 h-4" />}
+                  iconPosition="right"
+                  className="relative overflow-hidden group bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:via-blue-500 hover:to-indigo-500 text-white font-bold px-7 py-3.5 rounded-full shadow-[0_6px_24px_rgba(2,132,199,0.38)] border border-sky-400/30"
+                >
+                  {/* Shiny Reflection Beam Sweep */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none" />
+                  <span>{data.hero.primaryCta}</span>
+                </Button>
+              </motion.div>
 
-              <Button
-                variant="glass"
-                size="md"
-                onClick={() => scrollToSection("contact")}
-                className="bg-white/90 hover:bg-white text-slate-800 font-bold px-6 py-3 rounded-full border border-slate-300 shadow-xs"
-              >
-                {data.hero.secondaryCta}
-              </Button>
-            </div>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <Button
+                  variant="glass"
+                  size="md"
+                  onClick={() => scrollToSection("contact")}
+                  className="bg-white/90 hover:bg-white text-slate-800 font-bold px-7 py-3.5 rounded-full border border-slate-300 shadow-xs"
+                >
+                  {data.hero.secondaryCta}
+                </Button>
+              </motion.div>
+            </motion.div>
 
-            {/* Social Quick Links (Reference style) */}
-            <div className="flex flex-wrap items-center gap-5 sm:gap-6 pt-3 text-xs sm:text-sm font-semibold text-slate-600">
+            {/* Social Quick Links */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center gap-5 sm:gap-6 pt-2 text-xs sm:text-sm font-semibold text-slate-600"
+            >
               <a
                 href={data.contact.info.facebook || "https://facebook.com/truongnguyen.dev"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-sky-600 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 hover:text-sky-600 transition-colors cursor-pointer group"
               >
-                <FacebookIcon className="w-4 h-4 text-sky-600" />
+                <FacebookIcon className="w-4 h-4 text-sky-600 group-hover:scale-110 transition-transform" />
                 <span>Facebook</span>
               </a>
 
@@ -187,56 +225,60 @@ export const Hero: React.FC = () => {
                 href={data.contact.info.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 hover:text-sky-600 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 hover:text-sky-600 transition-colors cursor-pointer group"
               >
-                <GithubIcon className="w-4 h-4 text-slate-700" />
+                <GithubIcon className="w-4 h-4 text-slate-700 group-hover:scale-110 transition-transform" />
                 <span>GitHub</span>
               </a>
 
               <a
                 href={`mailto:${data.contact.info.email}`}
-                className="inline-flex items-center gap-1.5 hover:text-sky-600 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 hover:text-sky-600 transition-colors cursor-pointer group"
               >
-                <Mail className="w-4 h-4 text-slate-700" />
+                <Mail className="w-4 h-4 text-slate-700 group-hover:scale-110 transition-transform" />
                 <span>Email</span>
               </a>
 
               <a
                 href={`tel:${data.contact.info.phone.replace(/\s+/g, "")}`}
-                className="inline-flex items-center gap-1.5 hover:text-sky-600 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 hover:text-sky-600 transition-colors cursor-pointer group"
               >
-                <Phone className="w-4 h-4 text-slate-700" />
+                <Phone className="w-4 h-4 text-slate-700 group-hover:scale-110 transition-transform" />
                 <span>{data.contact.info.displayPhone}</span>
               </a>
-            </div>
+            </motion.div>
           </motion.div>
 
-          {/* Right Column: Prominent Portrait Frame + Floating Achievement Badges */}
+          {/* Right Column: Prominent Portrait Frame + Floating Badges */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
             className="lg:col-span-5 relative flex justify-center"
           >
-            <div className="relative w-full max-w-[360px] sm:max-w-[400px]">
+            <div className="relative w-full max-w-[360px] sm:max-w-[410px]">
 
               {/* Animated Glow Aura behind Portrait */}
-              <div className="absolute -inset-4 rounded-[42px] bg-gradient-to-tr from-sky-500/30 via-blue-600/20 to-indigo-500/30 blur-2xl opacity-80 animate-pulse pointer-events-none" />
+              <div className="absolute -inset-4 rounded-[42px] bg-gradient-to-tr from-sky-500/35 via-blue-600/25 to-indigo-500/35 blur-2xl opacity-80 animate-pulse pointer-events-none" />
 
               {/* Portrait Frame Container with Gradient Border */}
-              <div className="relative w-full aspect-[3/4] rounded-[36px] p-2 bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 shadow-[0_20px_50px_rgba(2,132,199,0.25)] group/avatar">
+              <motion.div
+                whileHover={{ rotateY: 3, rotateX: -3 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative w-full aspect-[3/4] rounded-[36px] p-2 bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-600 shadow-[0_22px_55px_rgba(2,132,199,0.28)] group/avatar"
+              >
                 <div className="relative w-full h-full rounded-[28px] overflow-hidden bg-slate-100">
                   <img
                     src={avatarUrl}
                     alt="Nguyễn Thành Trương"
-                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/avatar:scale-105"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/avatar:scale-106"
                   />
 
-                  {/* Subtle shine sweep on hover */}
+                  {/* Shine reflection sweep */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/25 to-transparent -translate-x-full group-hover/avatar:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
 
-                  {/* Subtle Gradient Overlay at bottom */}
-                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/75 via-slate-900/35 to-transparent pointer-events-none" />
+                  {/* Gradient Overlay at bottom */}
+                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/80 via-slate-900/40 to-transparent pointer-events-none" />
 
                   {/* Name overlay on photo */}
                   <div className="absolute inset-x-0 bottom-0 p-5 text-white pointer-events-none">
@@ -248,19 +290,20 @@ export const Hero: React.FC = () => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Floating Badge 1: Top Right */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
                 className="absolute -top-4 -right-4 sm:-right-8 z-20"
               >
                 <motion.div
                   animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
-                  className="px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-amber-200/90 shadow-[0_8px_24px_rgba(245,158,11,0.2)] flex items-center gap-2 hover:scale-105 transition-transform duration-200 cursor-default"
+                  whileHover={{ scale: 1.08 }}
+                  className="px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-amber-200/90 shadow-[0_8px_24px_rgba(245,158,11,0.22)] flex items-center gap-2 transition-transform duration-200 cursor-default"
                 >
                   <div className="p-1.5 rounded-lg bg-amber-50">
                     {getBadgeIcon(data.hero.badges[0].icon)}
@@ -280,13 +323,14 @@ export const Hero: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
                 className="absolute top-1/2 -translate-y-1/2 -left-4 sm:-left-10 z-20"
               >
                 <motion.div
                   animate={{ y: [0, 8, 0] }}
                   transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-                  className="px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-sky-200/90 shadow-[0_8px_24px_rgba(2,132,199,0.2)] flex items-center gap-2 hover:scale-105 transition-transform duration-200 cursor-default"
+                  whileHover={{ scale: 1.08 }}
+                  className="px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-sky-200/90 shadow-[0_8px_24px_rgba(2,132,199,0.22)] flex items-center gap-2 transition-transform duration-200 cursor-default"
                 >
                   <div className="p-1.5 rounded-lg bg-sky-50">
                     {getBadgeIcon(data.hero.badges[1].icon)}
@@ -306,13 +350,14 @@ export const Hero: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
                 className="absolute -bottom-5 -right-2 sm:-right-6 z-20"
               >
                 <motion.div
                   animate={{ y: [0, -7, 0] }}
                   transition={{ duration: 4.6, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                  className="px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-emerald-200/90 shadow-[0_8px_24px_rgba(16,185,129,0.2)] flex items-center gap-2 hover:scale-105 transition-transform duration-200 cursor-default"
+                  whileHover={{ scale: 1.08 }}
+                  className="px-3.5 py-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-emerald-200/90 shadow-[0_8px_24px_rgba(16,185,129,0.22)] flex items-center gap-2 transition-transform duration-200 cursor-default"
                 >
                   <div className="p-1.5 rounded-lg bg-emerald-50">
                     {getBadgeIcon(data.hero.badges[2].icon)}
@@ -327,10 +372,21 @@ export const Hero: React.FC = () => {
                   </div>
                 </motion.div>
               </motion.div>
+
             </div>
           </motion.div>
 
         </div>
+
+        {/* Landing.love Inspired Infinite Marquee Ticker */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="mt-14 pt-6 border-t border-slate-200/70"
+        >
+          <MarqueeTicker speed={35} />
+        </motion.div>
       </div>
 
       {/* Cloudinary Image Upload Modal */}

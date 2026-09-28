@@ -4,6 +4,8 @@ import React from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { AmbientBackground } from "@/components/ui/AmbientBackground";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { CursorSpotlight } from "@/components/ui/CursorSpotlight";
 import { Hero } from "@/components/sections/Hero";
 import { MetricsMatrix } from "@/components/sections/MetricsMatrix";
 import { Capabilities } from "@/components/sections/Capabilities";
@@ -16,6 +18,8 @@ import { Contact } from "@/components/sections/Contact";
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
+      <CursorSpotlight />
       <AmbientBackground />
       <Navbar />
       <main className="flex-1">

@@ -1,19 +1,84 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 
 export const AmbientBackground: React.FC = () => {
   return (
     <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none">
-      {/* Base Light Background */}
+      {/* Base Light Canvas */}
       <div className="absolute inset-0 bg-[#f8fafc]" />
 
-      {/* Top Ambient Glow (Sky & Cyan) */}
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1000px] h-[450px] bg-gradient-to-b from-sky-200/35 via-blue-100/20 to-transparent blur-3xl opacity-70" />
+      {/* Subtle Grid Line Pattern overlay for futuristic agency aesthetic */}
+      <div
+        className="absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage: `radial-gradient(#0284c7 1px, transparent 1px)`,
+          backgroundSize: "32px 32px"
+        }}
+      />
 
-      {/* Side Ambient Accent Glows (Zero CPU cost, pure CSS) */}
-      <div className="absolute top-1/3 -right-32 w-[500px] h-[500px] bg-indigo-100/30 rounded-full blur-3xl opacity-60" />
-      <div className="absolute top-2/3 -left-32 w-[450px] h-[450px] bg-sky-100/35 rounded-full blur-3xl opacity-60" />
+      {/* Animated Floating Gradient Orb 1 (Top Center Sky) */}
+      <motion.div
+        animate={{
+          y: [0, 25, 0],
+          x: [0, -15, 0],
+          scale: [1, 1.08, 1]
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-gradient-to-b from-sky-200/40 via-blue-100/25 to-transparent blur-3xl opacity-80"
+      />
+
+      {/* Animated Floating Gradient Orb 2 (Mid Right Indigo) */}
+      <motion.div
+        animate={{
+          y: [0, -35, 0],
+          x: [0, 20, 0],
+          scale: [1, 1.12, 1]
+        }}
+        transition={{
+          duration: 16,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1
+        }}
+        className="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-indigo-100/35 rounded-full blur-3xl opacity-65"
+      />
+
+      {/* Animated Floating Gradient Orb 3 (Lower Left Cyan/Sky) */}
+      <motion.div
+        animate={{
+          y: [0, 40, 0],
+          x: [0, -25, 0],
+          scale: [1, 1.15, 1]
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2
+        }}
+        className="absolute top-2/3 -left-40 w-[550px] h-[550px] bg-sky-200/35 rounded-full blur-3xl opacity-65"
+      />
+
+      {/* Animated Floating Accent Node 4 (Bottom Right Emerald glow) */}
+      <motion.div
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.3, 0.6, 0.3]
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 3
+        }}
+        className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-emerald-100/25 rounded-full blur-3xl pointer-events-none"
+      />
     </div>
   );
 };
