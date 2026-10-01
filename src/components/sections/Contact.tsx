@@ -52,26 +52,54 @@ export const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formState.name || !formState.email || !formState.message) {
       return;
     }
 
     setIsSubmitting(true);
-    // Simulate real network submission with realistic latency
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormState({
-        name: "",
-        email: "",
-        org: "",
-        topic: "job",
-        message: ""
+
+    try {
+      // Thay YOUR_ACCESS_KEY bằng Access Key bạn nhận được từ Web3Forms
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "a6a45df2-d8d6-40b7-b9e2-80f3054c7021", // <--- ĐIỀN KEY CỦA BẠN VÀO ĐÂY
+          name: formState.name,
+          email: formState.email,
+          organization: formState.org,
+          topic: data.contact.form.topicOptions.find(opt => opt.value === formState.topic)?.label || formState.topic,
+          message: formState.message,
+          subject: `Tin nhắn mới từ Portfolio - ${formState.name}`,
+        }),
       });
-      setTimeout(() => setIsSubmitted(false), 7000);
-    }, 1200);
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormState({
+          name: "",
+          email: "",
+          org: "",
+          topic: "job",
+          message: ""
+        });
+        setTimeout(() => setIsSubmitted(false), 7000);
+      } else {
+        setIsSubmitting(false);
+        alert("Có lỗi xảy ra, vui lòng thử lại sau!");
+      }
+    } catch (error) {
+      setIsSubmitting(false);
+      alert("Có lỗi kết nối, vui lòng kiểm tra lại mạng!");
+    }
   };
 
   const scrollToContactForm = () => {
@@ -84,7 +112,7 @@ export const Contact: React.FC = () => {
   return (
     <section id="contact" className="py-16 md:py-24 relative">
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 space-y-16">
-        
+
         {/* Top Call-to-Action Banner */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -93,8 +121,8 @@ export const Contact: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="relative overflow-hidden p-8 sm:p-10 md:p-12 rounded-3xl bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 text-white shadow-[0_16px_40px_-8px_rgba(2,132,199,0.35)]">
-            <div className="absolute -right-16 -top-16 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none" />
-            <div className="absolute -left-16 -bottom-16 w-64 h-64 bg-sky-400/20 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -right-16 -top-16 w-64 h-64 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 via-white/5 to-transparent rounded-full pointer-events-none" />
+            <div className="absolute -left-16 -bottom-16 w-64 h-64 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sky-400/20 via-sky-400/5 to-transparent rounded-full pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Left Column: Headline and Call-to-Actions */}
@@ -193,7 +221,7 @@ export const Contact: React.FC = () => {
 
         {/* 2-Column Contact Framework */}
         <div id="contact-form-anchor" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Left Column: Direct Connection Channels */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}

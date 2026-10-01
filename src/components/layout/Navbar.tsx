@@ -3,9 +3,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { motion } from "framer-motion";
 import { Download, ChevronDown, Menu, X, FileText, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BrandLogo } from "@/components/ui/BrandLogo";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export const Navbar: React.FC = () => {
   const { language, setLanguage, data } = useLanguage();
@@ -44,18 +46,14 @@ export const Navbar: React.FC = () => {
 
   const handleDownloadCv = (version: "vi" | "en") => {
     setCvDropdownOpen(false);
-    // In production this points to public/cv/NguyenThanhTruong_CV_{vi|en}.pdf
-    // For now we can trigger a download of a placeholder or alert/open
     const fileName =
       version === "vi"
         ? "Nguyen_Thanh_Truong_CV_TiengViet.pdf"
         : "Nguyen_Thanh_Truong_CV_English.pdf";
     
-    // Create an accessible notification / download anchor
     const link = document.createElement("a");
     link.href = `#contact`;
     link.setAttribute("download", fileName);
-    // Smooth scroll to contact if CV file is requested or alert user
     handleScrollTo("contact");
   };
 
@@ -63,23 +61,25 @@ export const Navbar: React.FC = () => {
     <header className="fixed top-3 sm:top-4 inset-x-0 z-50 px-3 sm:px-6 pointer-events-none">
       <div className="w-full max-w-[1400px] mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 bg-white/85 backdrop-blur-xl border border-slate-200/90 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.06)] pointer-events-auto transition-all duration-300">
         
-        {/* Left: High-End Brand Logo */}
+        {/* Left: High-End Brand Logo with Magnetic Touch */}
         <div className="flex items-center">
-          <a
-            href="#about"
-            onClick={(e) => {
-              e.preventDefault();
-              handleScrollTo("about");
-            }}
-            className="cursor-pointer group"
-            aria-label="Thành Trương Portfolio Home"
-          >
-            <BrandLogo />
-          </a>
+          <MagneticButton strength={0.2}>
+            <a
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                handleScrollTo("about");
+              }}
+              className="cursor-pointer group block"
+              aria-label="Thành Trương Portfolio Home"
+            >
+              <BrandLogo />
+            </a>
+          </MagneticButton>
         </div>
 
-        {/* Center: Desktop Navigation Links (Scroll Spy) */}
-        <nav className="hidden lg:flex items-center gap-1.5 bg-slate-100/70 p-1.5 rounded-full border border-slate-200/60">
+        {/* Center: Desktop Navigation Links with Sliding Active Pill */}
+        <nav className="hidden lg:flex items-center gap-1 bg-slate-100/70 p-1.5 rounded-full border border-slate-200/60 relative">
           {data.navigation.links.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -87,19 +87,24 @@ export const Navbar: React.FC = () => {
                 key={link.id}
                 onClick={() => handleScrollTo(link.id)}
                 className={cn(
-                  "px-3.5 py-1.5 rounded-full text-sm font-semibold tracking-[-0.01em] transition-all duration-200 cursor-pointer select-none",
-                  isActive
-                    ? "bg-white text-sky-600 shadow-sm font-bold"
-                    : "text-slate-600 hover:text-slate-900 hover:bg-white/60"
+                  "relative px-4 py-1.5 rounded-full text-sm font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer select-none z-10",
+                  isActive ? "text-sky-700 font-bold" : "text-slate-600 hover:text-slate-900"
                 )}
               >
-                {link.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="navbarActivePill"
+                    className="absolute inset-0 bg-white rounded-full shadow-xs border border-slate-200/80 -z-10"
+                    transition={{ type: "spring", stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <span>{link.label}</span>
               </button>
             );
           })}
         </nav>
 
-        {/* Right: Language Switcher & CV Dropdown */}
+        {/* Right: Language Switcher & Magnetic CV Button */}
         <div className="flex items-center gap-2.5">
           {/* Language Switcher Toggle [VI] | EN */}
           <div className="flex items-center bg-slate-100/80 p-0.5 rounded-full border border-slate-200/80 text-xs font-semibold">
@@ -129,18 +134,20 @@ export const Navbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Download CV Dropdown */}
+          {/* Download CV Dropdown with Magnetic Button */}
           <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setCvDropdownOpen(!cvDropdownOpen)}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:via-blue-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-bold rounded-full shadow-[0_4px_14px_rgba(2,132,199,0.35)] hover:shadow-[0_6px_20px_rgba(2,132,199,0.45)] border border-sky-400/25 transition-all duration-200 cursor-pointer active:translate-y-0.5"
-              aria-haspopup="true"
-              aria-expanded={cvDropdownOpen}
-            >
-              <Download className="w-4 h-4" />
-              <span className="hidden sm:inline">{data.navigation.downloadCv.label}</span>
-              <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", cvDropdownOpen && "rotate-180")} />
-            </button>
+            <MagneticButton strength={0.25}>
+              <button
+                onClick={() => setCvDropdownOpen(!cvDropdownOpen)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:via-blue-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-bold rounded-full shadow-[0_4px_14px_rgba(2,132,199,0.35)] hover:shadow-[0_6px_20px_rgba(2,132,199,0.45)] border border-sky-400/25 transition-all duration-200 cursor-pointer"
+                aria-haspopup="true"
+                aria-expanded={cvDropdownOpen}
+              >
+                <Download className="w-4 h-4" />
+                <span className="hidden sm:inline">{data.navigation.downloadCv.label}</span>
+                <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", cvDropdownOpen && "rotate-180")} />
+              </button>
+            </MagneticButton>
 
             {/* Dropdown Menu */}
             {cvDropdownOpen && (

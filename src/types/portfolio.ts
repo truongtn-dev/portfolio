@@ -71,6 +71,18 @@ export interface TechCategory {
   }[];
 }
 
+export interface PressItem {
+  id: string;
+  outlet: string;
+  logo: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  articleUrl: string;
+  badge: string;
+  category: string;
+}
+
 export interface FaqItem {
   id: string;
   question: string;
@@ -128,6 +140,12 @@ export interface PortfolioData {
     title: string;
     description: string;
     items: MetricItem[];
+  };
+  press?: {
+    kicker: string;
+    title: string;
+    subtitle: string;
+    items: PressItem[];
   };
   capabilities: {
     title: string;

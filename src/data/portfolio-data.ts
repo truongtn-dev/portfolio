@@ -68,7 +68,7 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
       ]
     },
     metrics: {
-      title: "Dấu ấn thực tế qua những con số",
+      title: "Dấu ấn thực tế qua những con\u00A0số",
       description: "Những kết quả định lượng cụ thể được tạo nên từ quá trình học tập, nghiên cứu học thuật và vận hành tăng trưởng.",
       items: [
         {
@@ -121,8 +121,147 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
         }
       ]
     },
+    press: {
+      kicker: "GHI NHẬN TRUYỀN THÔNG",
+      title: "Báo chí & Truyền thông đưa\u00A0tin",
+      subtitle: "12+ bài viết phỏng vấn, đưa tin và vinh danh các giải pháp y tế số, công trình nghiên cứu quốc tế và hành trình khởi nghiệp của Nguyễn Thành Trương trên các trang báo chí hàng đầu.",
+      items: [
+        {
+          id: "press-fptu-icteched",
+          outlet: "Đại học FPT",
+          logo: "/images/press/fpt.png",
+          title: "Sinh viên FPTU trở thành Chủ tọa trẻ tuổi nhất tại Hội thảo quốc tế ICTechED13",
+          excerpt: "Nguyễn Thành Trương - sinh viên chuyên ngành Kỹ thuật Phần mềm Trường Đại học FPT đảm nhiệm vai trò Chủ tọa điều phối phiên báo cáo khoa học tại Hội thảo Quốc tế ICTechED (Bangkok).",
+          date: "06/2026",
+          articleUrl: "https://daihoc.fpt.edu.vn/tin-tuc/sinh-vien-fptu-tro-thanh-chu-toa-tre-tuoi-nhat-tai-hoi-thao-quoc-te-icteched13/",
+          badge: "Chủ Tọa Quốc Tế",
+          category: "Học Thuật & R&D"
+        },
+        {
+          id: "press-fptu-aoc",
+          outlet: "Đại học FPT",
+          logo: "/images/press/fpt.png",
+          title: "Sinh viên FPTU và dấu ấn nghiên cứu liên ngành tại Hội nghị y khoa quốc tế AOC 2026",
+          excerpt: "Với sự đồng hành của các bác sĩ chuyên khoa, nhóm sinh viên mang công trình nghiên cứu ứng dụng công nghệ số và quy trình sàng lọc thị lực chuẩn hóa y khoa đến báo cáo tại AOC 2026.",
+          date: "09/2026",
+          articleUrl: "https://daihoc.fpt.edu.vn/tin-nghien-cuu-khoa-hoc/sinh-vien-fptu-va-dau-an-nghien-cuu-lien-nganh-tai-hoi-nghi-y-khoa-quoc-te-aoc-2026/",
+          badge: "Báo Cáo Châu Á",
+          category: "Nghiên Cứu Y Tế"
+        },
+        {
+          id: "press-laodong-benhvienao",
+          outlet: "Báo Lao Động",
+          logo: "/images/press/ldo_red.png",
+          title: "Sinh viên Cần Thơ làm dự án bệnh viện ảo giúp trải nghiệm khám mắt tại nhà",
+          excerpt: "Báo Lao Động phỏng vấn và đưa tin về mô hình Bệnh viện 360° tương tác WebVR giúp bệnh nhân trải nghiệm không gian y tế trực quan và giảm thiểu tâm lý lo lắng tiền phẫu thuật.",
+          date: "05/2026",
+          articleUrl: "https://laodong.vn/ldt/doi-song/sinh-vien-can-tho-lam-du-an-benh-vien-ao-giup-trai-nghiem-kham-mat-tai-nha-1680018.ldo",
+          badge: "Báo Chí Trung Ương",
+          category: "Báo Điện Tử"
+        },
+        {
+          id: "press-baocantho-benhvien360",
+          outlet: "Báo Cần Thơ",
+          logo: "/images/press/logo_baocantho.png",
+          title: "Bệnh viện 360° thời đại số nâng cao trải nghiệm chăm sóc mắt cho cộng đồng",
+          excerpt: "Báo Cần Thơ đưa tin dự án Bệnh viện 360° lấy bệnh nhân làm trung tâm, gia tăng khả năng tiếp cận thông tin và trải nghiệm dịch vụ nhãn khoa số tại ĐBSCL.",
+          date: "04/2026",
+          articleUrl: "https://baocantho.com.vn/benh-vien-360-thoi-dai-so-nang-cao-trai-nghiem-cham-soc-mat-cho-cong-dong-a201496.html",
+          badge: "Truyền Thông Địa Phương",
+          category: "Y Tế Số"
+        },
+        {
+          id: "press-fptu-benhvien360",
+          outlet: "Đại học FPT",
+          logo: "/images/press/fpt.png",
+          title: "Sinh viên Trường Đại học FPT đưa mô hình 'Bệnh viện 360°' vào thực tế",
+          excerpt: "Từ quan sát tâm lý ngại đến cơ sở y tế của người dân, nhóm sinh viên phát triển OrcaX - hệ sinh thái trải nghiệm y tế số và giải pháp Bệnh viện 360° ứng dụng lâm sàng.",
+          date: "05/2026",
+          articleUrl: "https://daihoc.fpt.edu.vn/tin-noi-bat-muc-tin-tuc/sinh-vien-truong-dai-hoc-fpt-dua-mo-hinh-benh-vien-360-vao-thuc-te/",
+          badge: "Mô Hình Đột Phá",
+          category: "Y Tế Số"
+        },
+        {
+          id: "press-laodong-ungdung",
+          outlet: "Báo Lao Động",
+          logo: "/images/press/ldo_red.png",
+          title: "Nhóm sinh viên phát triển ứng dụng hỗ trợ người bệnh tiếp cận dịch vụ y tế",
+          excerpt: "Ứng dụng giải pháp kỹ thuật công nghệ thông tin hỗ trợ quy trình sàng lọc, giải tỏa áp lực vận hành và hỗ trợ người bệnh tiếp cận dịch vụ y tế dễ dàng.",
+          date: "06/2026",
+          articleUrl: "https://laodong.vn/ldt/giao-duc/nhom-sinh-vien-phat-trien-ung-dung-ho-tro-nguoi-benh-tiep-can-dich-vu-y-te-1730796.ldo",
+          badge: "Báo Lao Động",
+          category: "Giáo Dục & Y Tế"
+        },
+        {
+          id: "press-ttvh-visi",
+          outlet: "Thể Thao & Văn Hóa",
+          logo: "/images/press/logo.webp",
+          title: "Bệnh viện Mắt VISI Sóc Trăng với 'Bệnh viện 360° thời đại số'",
+          excerpt: "Báo Thể thao & Văn hóa (TTXVN) đưa tin việc triển khai mô hình Bệnh viện mắt thông minh kết hợp giữa chuyên môn nhãn khoa và trải nghiệm số cho người bệnh.",
+          date: "05/2026",
+          articleUrl: "https://thethaovanhoa.vn/benh-vien-mat-visi-soc-trang-voi-benh-vien-360-thoi-dai-so-20260522082328254.htm",
+          badge: "TTXVN Đưa Tin",
+          category: "Báo Chí Quốc Gia"
+        },
+        {
+          id: "press-vietnamvn-benhvien360",
+          outlet: "Vietnam.vn",
+          logo: "/images/press/logo-vietnam.webp",
+          title: "Sinh viên Trường Đại học FPT đưa mô hình 'Bệnh viện 360°' vào thực tế",
+          excerpt: "Cổng thông tin đối ngoại Quốc gia Vietnam.vn vinh danh sáng kiến OrcaX của nhóm sinh viên FPT Cần Thơ trong việc ứng dụng công nghệ y tế phục vụ cộng đồng.",
+          date: "05/2026",
+          articleUrl: "https://www.vietnam.vn/sinh-vien-truong-dai-hoc-fpt-dua-mo-hinh-benh-vien-360-vao-thuc-te",
+          badge: "Đối Ngoại Quốc Gia",
+          category: "Quảng Bá Quốc Tế"
+        },
+        {
+          id: "press-cafef-khoinghiep",
+          outlet: "CafeF",
+          logo: "/images/press/cafef-logo.png",
+          title: "Học khởi nghiệp ở trường đại học: Tạo ra giá trị và làm chủ hành trình",
+          excerpt: "CafeF ghi nhận góc nhìn khởi nghiệp công nghệ, phát triển sản phẩm phần mềm thực chiến mang lại giá trị thực cho cộng đồng và doanh nghiệp.",
+          date: "06/2026",
+          articleUrl: "https://cafef.vn/hoc-khoi-nghiep-o-truong-dai-hoc-khong-phai-ai-cung-thanh-founder-nhung-ai-cung-can-tu-duy-lam-chu-188260623192001525.chn",
+          badge: "Tài Chính & Khởi Nghiệp",
+          category: "Doanh Nghiệp"
+        },
+        {
+          id: "press-thanhnienviet-khoinghiep",
+          outlet: "Thanh Niên Việt",
+          logo: "/images/press/TNV.webp",
+          title: "Lan tỏa tinh thần tự chủ & đổi mới sáng tạo trong sinh viên công nghệ",
+          excerpt: "Tạp chí Thanh Niên Việt phân tích hành trình khởi nghiệp y tế số và khát vọng mang sản phẩm phần mềm Việt phục vụ xã hội.",
+          date: "06/2026",
+          articleUrl: "https://thanhnienviet.vn/hoc-khoi-nghiep-o-truong-dai-hoc-khong-phai-ai-cung-thanh-founder-nhung-ai-cung-can-tu-duy-lam-chu-209260623164654592.htm",
+          badge: "Thanh Niên Đổi Mới",
+          category: "Tạp Chí Chuyên Ngành"
+        },
+        {
+          id: "press-laodongtre-benhvienao",
+          outlet: "Lao Động Trẻ",
+          logo: "/images/press/ldo_red.png",
+          title: "Sinh viên Cần Thơ làm dự án bệnh viện ảo, giúp trải nghiệm khám mắt tại nhà",
+          excerpt: "Dự án bệnh viện ảo 360 độ do nhóm sinh viên phát triển giúp bệnh nhân dễ dàng trải nghiệm quy trình khám chữa bệnh tại nhà.",
+          date: "05/2023",
+          articleUrl: "https://laodong.vn/ldt/doi-song/sinh-vien-can-tho-lam-du-an-benh-vien-ao-giup-trai-nghiem-kham-mat-tai-nha-1680018.ldo",
+          badge: "Công Nghệ Báo Chí",
+          category: "Y Tế"
+        },
+        {
+          id: "press-fptu-khoinghiep",
+          outlet: "Đại học FPT",
+          logo: "/images/press/fpt.png",
+          title: "Học khởi nghiệp ở trường đại học: Ai cũng cần tư duy làm chủ",
+          excerpt: "Hành trình truyền cảm hứng về tinh thần khởi nghiệp đổi mới sáng tạo, chuyển hóa kiến thức phần mềm từ giảng đường thành các giải pháp y tế thực tiễn.",
+          date: "06/2026",
+          articleUrl: "https://daihoc.fpt.edu.vn/bao-chi-noi-ve-fptu/hoc-khoi-nghiep-o-truong-dai-hoc-khong-phai-ai-cung-thanh-founder-nhung-ai-cung-can-tu-duy-lam-chu/",
+          badge: "Tư Duy Khởi Nghiệp",
+          category: "Lãnh Đạo & Tăng Trưởng"
+        }
+      ]
+    },
     capabilities: {
-      title: "Tôi có thể đóng góp gì cho đội ngũ và dự án?",
+      title: "Tôi có thể đóng góp gì cho đội ngũ và dự\u00A0án?",
       subtitle: "Sự giao thoa độc đáo giữa tư duy kỹ sư phần mềm, phân tích dữ liệu nghiên cứu và năng lực tăng trưởng sản phẩm thực chiến.",
       items: [
         {
@@ -208,7 +347,7 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
       ]
     },
     projects: {
-      title: "Dự án tiêu biểu & Công trình nổi bật",
+      title: "Dự án tiêu biểu & Công trình nổi\u00A0bật",
       subtitle: "Những sản phẩm thực tế và công trình học thuật kết tinh từ tư duy kỹ thuật chuẩn xác và định hướng giá trị cộng đồng.",
       filterLabels: {
         all: "Tất cả dự án",
@@ -365,7 +504,7 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
       ]
     },
     experience: {
-      title: "Hành trình & Kinh nghiệm thực chiến",
+      title: "Hành trình & Kinh nghiệm thực\u00A0chiến",
       subtitle: "Quá trình tích lũy chuyên môn liên tục từ giảng đường công nghệ đến môi trường khởi nghiệp, y tế số và doanh nghiệp thực tế.",
       items: [
         {
@@ -379,7 +518,7 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
           description: "Sáng lập và điều hành dự án công nghệ y tế OrcaX. Định hướng kiến trúc công nghệ, xây dựng sản phẩm WebVR 360° và chỉ huy chiến dịch triển khai thực địa quốc tế.",
           achievements: [
             "Hỗ trợ sàng lọc mắt cho gần 600 bệnh nhân tại Phnom Penh, Campuchia (04/2026)",
-            "Đưa dự án vào Top 30 Khởi nghiệp Quốc gia và nhận gói ươm mầm 50 triệu VNĐ",
+            "Đưa dự án vào Top 30 Khởi nghiệp Trường Đại học FPT",
             "Thiết lập mạng lưới quan hệ hợp tác với các bác sĩ chuyên khoa và tổ chức cộng đồng"
           ],
           skills: ["Leadership", "WebVR 360°", "Computer Vision", "Next.js", "Field Operation"]
@@ -394,9 +533,8 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
           isCurrent: true,
           description: "Trực tiếp đồng hành cùng Tập đoàn Y khoa VISI trong chiến dịch nâng cao nhận thức và điều trị lác lé cộng đồng: kết nối giữa truyền thông số hóa, thiết kế ấn phẩm đồ họa, tối ưu hóa quy trình tư vấn và nâng cao trải nghiệm chăm sóc bệnh nhân.",
           achievements: [
-            "Đóng góp xây dựng quy trình tiếp nhận, sàng lọc và đồng hành cùng bệnh nhân thực hiện phẫu thuật phục hồi thị lực và thẩm mỹ",
-            "Sản xuất tài liệu truyền thông, ấn phẩm đồ họa và tối ưu kênh tiếp cận thông tin y khoa chính thống cho người bệnh",
-            "Ứng dụng kiến thức quản lý bệnh viện để cải thiện trải nghiệm và mức độ hài lòng của bệnh nhân trong toàn bộ lộ trình"
+            "Hỗ trợ sàng lọc bằng AI và đồng hành cùng bệnh nhân thực hiện phẫu thuật phục hồi thị lực và thẩm mỹ",
+            "Sản xuất tài liệu truyền thông, ấn phẩm đồ họa và tối ưu kênh tiếp cận thông tin y khoa chính thống cho người bệnh"
           ],
           skills: ["Quản lý Bệnh viện", "Trải nghiệm Bệnh nhân", "Truyền thông Y tế", "Graphic Design", "SEO Y tế"]
         },
@@ -415,7 +553,7 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
             "Trực tiếp đứng trước ống kính (Host), rèn luyện khả năng giao tiếp, đàm phán và thuyết phục khách hàng chuyên nghiệp",
             "Am hiểu sâu sắc về thị trường, pháp lý quy hoạch và tâm lý nhà đầu tư bất động sản khu vực miền Tây"
           ],
-          skills: ["Bất Động Sản", "Tư Vấn Khách Hàng", "Host / Media Production", "Thương Lượng", "Digital Marketing"]
+          skills: ["Bất Động Sản", "Tư Vấn Khách Hàng", "Host / Media Production", "Digital Marketing"]
         },
         {
           id: "exp-2",
@@ -476,7 +614,7 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
       ]
     },
     techStack: {
-      title: "Hệ thống công nghệ & Công cụ làm việc",
+      title: "Hệ thống công nghệ & Công cụ làm\u00A0việc",
       subtitle: "Được tinh chọn để xây dựng những hệ thống ổn định, giao diện mượt mà và phân tích dữ liệu chuẩn mực.",
       categories: [
         {
@@ -535,7 +673,7 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
       ]
     },
     faq: {
-      title: "Câu hỏi thường gặp",
+      title: "Câu hỏi thường\u00A0gặp",
       subtitle: "Những giải đáp ngắn gọn giúp bạn nhanh chóng hiểu rõ về định hướng, năng lực và cách thức phối hợp cùng Thành Trương.",
       items: [
         {
@@ -564,7 +702,7 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
       bannerTitle: "Bạn đang tìm kiếm một nhân sự vừa vững tư duy kỹ thuật hệ thống, vừa có năng lực nghiên cứu và khả năng tăng trưởng sản phẩm thực chiến?",
       bannerCta: "Kết nối với tôi",
       bannerCv: "Tải CV bản mới nhất",
-      title: "Khởi tạo kết nối & Hợp tác",
+      title: "Khởi tạo kết nối & Hợp\u00A0tác",
       subtitle: "Tôi luôn hào hứng thảo luận về các cơ hội nghề nghiệp giá trị cao, các dự án phần mềm đột phá hoặc các đề tài nghiên cứu liên ngành.",
       directTitle: "Thông tin kết nối trực tiếp",
       formTitle: "Gửi tin nhắn trực tiếp",
@@ -724,6 +862,145 @@ export const portfolioData: { vi: PortfolioData; en: PortfolioData } = {
           description: "Directly consulted over 1,000+ property buyers and investors, produced high-reach video reviews, and closed multiple real estate transactions across the Mekong Delta.",
           highlight: "Commercial & Sales Execution",
           icon: "Home"
+        }
+      ]
+    },
+    press: {
+      kicker: "MEDIA COVERAGE",
+      title: "Featured in Top Press & Media",
+      subtitle: "12+ press features, interviews, and academic honors highlighting Nguyen Thanh Truong's digital health solutions, international research, and medtech startup journey.",
+      items: [
+        {
+          id: "press-fptu-icteched",
+          outlet: "FPT University",
+          logo: "/images/press/fpt.png",
+          title: "FPTU Student Appointed Youngest Session Chair at ICTechED13 International Conference",
+          excerpt: "Nguyen Thanh Truong served as Session Chair moderating scientific presentations at the ICTechED International Conference in Bangkok.",
+          date: "06/2026",
+          articleUrl: "https://daihoc.fpt.edu.vn/tin-tuc/sinh-vien-fptu-tro-thanh-chu-toa-tre-tuoi-nhat-tai-hoi-thao-quoc-te-icteched13/",
+          badge: "International Chair",
+          category: "Academic R&D"
+        },
+        {
+          id: "press-fptu-aoc",
+          outlet: "FPT University",
+          logo: "/images/press/fpt.png",
+          title: "FPTU Students Mark Interdisciplinary Research Milestone at AOC 2026 Asia Medical Congress",
+          excerpt: "In collaboration with ophthalmology specialists, student team presented clinical tech research at the 5th Asia Optometric Congress.",
+          date: "09/2026",
+          articleUrl: "https://daihoc.fpt.edu.vn/tin-nghien-cuu-khoa-hoc/sinh-vien-fptu-va-dau-an-nghien-cuu-lien-nganh-tai-hoi-nghi-y-khoa-quoc-te-aoc-2026/",
+          badge: "Asia Conference",
+          category: "Medical Research"
+        },
+        {
+          id: "press-laodong-benhvienao",
+          outlet: "Lao Dong Newspaper",
+          logo: "/images/press/ldo_red.png",
+          title: "Can Tho Students Build Virtual Hospital App Enabling At-Home Eye Exam Experience",
+          excerpt: "Lao Dong Newspaper interviews Thanh Truong on WebVR 360° Virtual Hospital platform relieving pre-surgery patient anxiety.",
+          date: "05/2026",
+          articleUrl: "https://laodong.vn/ldt/doi-song/sinh-vien-can-tho-lam-du-an-benh-vien-ao-giup-trai-nghiem-kham-mat-tai-nha-1680018.ldo",
+          badge: "National Press",
+          category: "Digital News"
+        },
+        {
+          id: "press-baocantho-benhvien360",
+          outlet: "Can Tho Newspaper",
+          logo: "/images/press/logo_baocantho.png",
+          title: "360° Virtual Hospital Elevating Community Ophthalmic Care Experience",
+          excerpt: "Can Tho Newspaper reports on patient-centric 360° hospital platform enhancing digital eyecare access across Mekong Delta.",
+          date: "04/2026",
+          articleUrl: "https://baocantho.com.vn/benh-vien-360-thoi-dai-so-nang-cao-trai-nghiem-cham-soc-mat-cho-cong-dong-a201496.html",
+          badge: "Regional Media",
+          category: "HealthTech"
+        },
+        {
+          id: "press-fptu-benhvien360",
+          outlet: "FPT University",
+          logo: "/images/press/fpt.png",
+          title: "FPT University Students Bringing 360° Virtual Hospital Model to Clinical Reality",
+          excerpt: "Engineered OrcaX digital health ecosystem and 360° Virtual Hospital model deployed into hospital clinical operations.",
+          date: "05/2026",
+          articleUrl: "https://daihoc.fpt.edu.vn/tin-noi-bat-muc-tin-tuc/sinh-vien-truong-dai-hoc-fpt-dua-mo-hinh-benh-vien-360-vao-thuc-te/",
+          badge: "Innovation Model",
+          category: "Digital Health"
+        },
+        {
+          id: "press-laodong-ungdung",
+          outlet: "Lao Dong Newspaper",
+          logo: "/images/press/ldo_red.png",
+          title: "Student Engineering Team Develops Digital App Enhancing Patient Healthcare Access",
+          excerpt: "Applying software engineering solutions to streamline hospital intake and improve public eyecare accessibility.",
+          date: "06/2026",
+          articleUrl: "https://laodong.vn/ldt/giao-duc/nhom-sinh-vien-phat-trien-ung-dung-ho-tro-nguoi-benh-tiep-can-dich-vu-y-te-1730796.ldo",
+          badge: "Lao Dong Feature",
+          category: "Education & Tech"
+        },
+        {
+          id: "press-ttvh-visi",
+          outlet: "The Thao & Van Hoa",
+          logo: "/images/press/logo.webp",
+          title: "VISI Eye Hospital Soc Trang Deploys Digital 360° Hospital System",
+          excerpt: "Vietnam News Agency (TTXVN) sports & culture daily features smart eye hospital deployment combining clinical care & spatial tech.",
+          date: "05/2026",
+          articleUrl: "https://thethaovanhoa.vn/benh-vien-mat-visi-soc-trang-voi-benh-vien-360-thoi-dai-so-20260522082328254.htm",
+          badge: "VNA Media",
+          category: "National Press"
+        },
+        {
+          id: "press-vietnamvn-benhvien360",
+          outlet: "Vietnam.vn",
+          logo: "/images/press/logo-vietnam.webp",
+          title: "FPT University Students Transform Healthcare Access with 360° Virtual Hospital",
+          excerpt: "National External Information Portal Vietnam.vn honors OrcaX innovation in representing young Vietnamese technology talents.",
+          date: "05/2026",
+          articleUrl: "https://www.vietnam.vn/sinh-vien-truong-dai-hoc-fpt-dua-mo-hinh-benh-vien-360-vao-thuc-te",
+          badge: "National Portal",
+          category: "Global Reach"
+        },
+        {
+          id: "press-cafef-khoinghiep",
+          outlet: "CafeF",
+          logo: "/images/press/cafef-logo.png",
+          title: "University Entrepreneurship: Creating Value and Mastering the Journey",
+          excerpt: "CafeF features product-focused software engineering and medtech startup mindset solving real social pain points.",
+          date: "06/2026",
+          articleUrl: "https://cafef.vn/hoc-khoi-nghiep-o-truong-dai-hoc-khong-phai-ai-cung-thanh-founder-nhung-ai-cung-can-tu-duy-lam-chu-188260623192001525.chn",
+          badge: "Finance & Startup",
+          category: "Business"
+        },
+        {
+          id: "press-thanhnienviet-khoinghiep",
+          outlet: "Thanh Nien Viet",
+          logo: "/images/press/TNV.webp",
+          title: "Empowering Ownership & Tech Innovation Mindset in Engineering Students",
+          excerpt: "Thanh Nien Viet Journal analyzes digital health startup journey and ambition to take Vietnamese software solutions abroad.",
+          date: "06/2026",
+          articleUrl: "https://thanhnienviet.vn/hoc-khoi-nghiep-o-truong-dai-hoc-khong-phai-ai-cung-thanh-founder-nhung-ai-cung-can-tu-duy-lam-chu-209260623164654592.htm",
+          badge: "Youth Innovation",
+          category: "Specialized Media"
+        },
+        {
+          id: "press-laodongtre-benhvienao",
+          outlet: "Lao Động Trẻ",
+          logo: "/images/press/ldo_red.png",
+          title: "Can Tho Students Build Virtual Hospital for At-Home Eye Exam Experience",
+          excerpt: "A 360-degree virtual hospital project developed by students enables patients to experience medical examination procedures from home.",
+          date: "05/2023",
+          articleUrl: "https://laodong.vn/ldt/doi-song/sinh-vien-can-tho-lam-du-an-benh-vien-ao-giup-trai-nghiem-kham-mat-tai-nha-1680018.ldo",
+          badge: "Tech News",
+          category: "Healthcare"
+        },
+        {
+          id: "press-fptu-khoinghiep",
+          outlet: "FPT University",
+          logo: "/images/press/fpt.png",
+          title: "University Entrepreneurship: Fostering Leadership & Innovation Mindset",
+          excerpt: "Inspiring journey translating software architecture into real-world healthcare products and social value.",
+          date: "06/2026",
+          articleUrl: "https://daihoc.fpt.edu.vn/bao-chi-noi-ve-fptu/hoc-khoi-nghiep-o-truong-dai-hoc-khong-phai-ai-cung-thanh-founder-nhung-ai-cung-can-tu-duy-lam-chu/",
+          badge: "Startup Mindset",
+          category: "Leadership"
         }
       ]
     },

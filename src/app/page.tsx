@@ -8,6 +8,7 @@ import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { CursorSpotlight } from "@/components/ui/CursorSpotlight";
 import { Hero } from "@/components/sections/Hero";
 import { MetricsMatrix } from "@/components/sections/MetricsMatrix";
+import { PressCoverage } from "@/components/sections/PressCoverage";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { Projects } from "@/components/sections/Projects";
 import { Experience } from "@/components/sections/Experience";
@@ -24,6 +25,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <PressCoverage />
         <MetricsMatrix />
         <Capabilities />
         <Projects />

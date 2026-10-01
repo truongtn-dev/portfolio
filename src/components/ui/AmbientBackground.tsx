@@ -30,7 +30,7 @@ export const AmbientBackground: React.FC = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-gradient-to-b from-sky-200/40 via-blue-100/25 to-transparent blur-3xl opacity-80"
+        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-200/40 via-blue-100/10 to-transparent opacity-80 rounded-[100%]"
       />
 
       {/* Animated Floating Gradient Orb 2 (Mid Right Indigo) */}
@@ -46,7 +46,7 @@ export const AmbientBackground: React.FC = () => {
           ease: "easeInOut",
           delay: 1
         }}
-        className="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-indigo-100/35 rounded-full blur-3xl opacity-65"
+        className="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-100/40 via-indigo-100/10 to-transparent rounded-full opacity-65"
       />
 
       {/* Animated Floating Gradient Orb 3 (Lower Left Cyan/Sky) */}
@@ -62,7 +62,7 @@ export const AmbientBackground: React.FC = () => {
           ease: "easeInOut",
           delay: 2
         }}
-        className="absolute top-2/3 -left-40 w-[550px] h-[550px] bg-sky-200/35 rounded-full blur-3xl opacity-65"
+        className="absolute top-2/3 -left-40 w-[550px] h-[550px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-sky-200/40 via-sky-200/10 to-transparent rounded-full opacity-65"
       />
 
       {/* Animated Floating Accent Node 4 (Bottom Right Emerald glow) */}
@@ -77,7 +77,7 @@ export const AmbientBackground: React.FC = () => {
           ease: "easeInOut",
           delay: 3
         }}
-        className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-emerald-100/25 rounded-full blur-3xl pointer-events-none"
+        className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-100/30 via-emerald-100/5 to-transparent rounded-full pointer-events-none"
       />
     </div>
   );
